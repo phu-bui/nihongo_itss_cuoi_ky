@@ -1,25 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import useStorage from './hooks/useStorage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [listStudent, inputName, inputedName, handleChange, onClick] = useStorage();
+
+
+    return (
+        <div>
+            <div className="listName listStudent">
+                <p>学生一覧：[Huyen, Hoa, Hung, Long]</p>
+            </div>
+
+            <div className="listStudent">検索名前：
+            <input className="listStudent" onChange={handleChange}/>
+            <button className="button" onClick={onClick}>確定</button>
+            </div>
+            
+            <div className="listStudent">検索名前：{inputName}</div>
+
+            <div className="listName listStudent">
+                <p>位置：</p>
+                {listStudent.map((element, index) => 
+                    inputedName === element ? (
+                        <p>{index}</p>
+                    ) : (
+                        <p></p>
+                    )
+                )}
+                <p></p>
+            </div>
+        </div>
+
+    );
 }
 
 export default App;
